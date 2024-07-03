@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course Enrollment Dashboard</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Welcome to Course Enrollment Dashboard</h2>
+        <p>Select your branch of engineering to view available courses:</p>
+        <form action="/dashboard" method="post">
+            <select name="branch" required>
+                <option value="Computer Science">Computer Science</option>
+                <option value="Electrical Engineering">Electrical Engineering</option>
+                <option value="Mechanical Engineering">Mechanical Engineering</option>
+                <option value="Civil Engineering">Civil Engineering</option>
+                <option value="Chemical Engineering">Chemical Engineering</option>
+                <option value="Aerospace Engineering">Aerospace Engineering</option>
+                <option value="Biomedical Engineering">Biomedical Engineering</option>
+                <option value="Environmental Engineering">Environmental Engineering</option>
+                <option value="Industrial Engineering">Industrial Engineering</option>
+                <option value="Materials Science">Materials Science</option>
+            </select>
+            <button type="submit">View Courses</button>
+        </form>
+
+        {% if courses %}
+            <h3>Courses for {{ branch }}</h3>
+            <div class="courses-container">
+                {% for course in courses %}
+                    <div class="course-card">
+                        <img src="{{ course.image }}" alt="Course Image">
+                        <h4>{{ course.name }}</h4>
+                        <p>{{ course.description }}</p>
+                        <button>Enroll Now</button>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>

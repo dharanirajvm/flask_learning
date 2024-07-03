@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course Enrollment Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f0f0f0;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        .course-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+        .course {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin: 10px;
+            padding: 20px;
+            width: 300px;
+        }
+        .course img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+        .course h2 {
+            margin-top: 10px;
+            color: #333;
+        }
+        .course p {
+            color: #666;
+        }
+        .enroll-btn {
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin-top: 10px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Engineering Courses Dashboard</h1>
+    <div class="course-container" id="courseContainer"></div>
+
+    <script>
+        const courses = [
+            { name: "Introduction to Computer Science", branch: "Computer Science", duration: "12 weeks", image: "https://example.com/cs-intro.jpg" },
+            { name: "Mechanical Engineering Fundamentals", branch: "Mechanical", duration: "16 weeks", image: "https://example.com/mech-fund.jpg" },
+            { name: "Electrical Circuits", branch: "Electrical", duration: "14 weeks", image: "https://example.com/elec-circuits.jpg" },
+            { name: "Civil Engineering Basics", branch: "Civil", duration: "15 weeks", image: "https://example.com/civil-basics.jpg" },
+            { name: "Chemical Process Design", branch: "Chemical", duration: "13 weeks", image: "https://example.com/chem-process.jpg" },
+            { name: "Data Structures and Algorithms", branch: "Computer Science", duration: "10 weeks", image: "https://example.com/dsa.jpg" },
+            { name: "Thermodynamics", branch: "Mechanical", duration: "11 weeks", image: "https://example.com/thermo.jpg" },
+            { name: "Digital Electronics", branch: "Electrical", duration: "12 weeks", image: "https://example.com/digital-elec.jpg" },
+            { name: "Structural Analysis", branch: "Civil", duration: "14 weeks", image: "https://example.com/struct-analysis.jpg" },
+            { name: "Organic Chemistry", branch: "Chemical", duration: "15 weeks", image: "https://example.com/organic-chem.jpg" }
+        ];
+
+        function createCourseElement(course) {
+            const courseElement = document.createElement('div');
+            courseElement.className = 'course';
+            courseElement.innerHTML = `
+                <img src="${course.image}" alt="${course.name}">
+                <h2>${course.name}</h2>
+                <p>Branch: ${course.branch}</p>
+                <p>Duration: ${course.duration}</p>
+                <button class="enroll-btn" onclick="enrollCourse('${course.name}')">Enroll Now</button>
+            `;
+            return courseElement;
+        }
+
+        function displayCourses() {
+            const container = document.getElementById('courseContainer');
+            courses.forEach(course => {
+                container.appendChild(createCourseElement(course));
+            });
+        }
+
+        function enrollCourse(courseName) {
+            alert(`You have enrolled in ${courseName}`);
+        }
+
+        displayCourses();
+    </script>
+</body>
+</html>
