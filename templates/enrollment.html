@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course Enrollment</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .teacher-container {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+        .teacher {
+            width: 48%;
+            border: 1px solid #ddd;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .teacher img {
+            width: 100%;
+            height: auto;
+            border-radius: 5px;
+        }
+        form {
+            display: grid;
+            gap: 10px;
+        }
+        label {
+            font-weight: bold;
+        }
+        input[type="text"],
+        input[type="email"],
+        select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        #timeSlot {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Enroll in Course</h1>
+        <div class="teacher-container">
+            <div class="teacher">
+                <img src="https://example.com/teacher1.jpg" alt="Teacher 1">
+                <h3>Dr. Jane Smith</h3>
+                <p>Specialization: Data Structures</p>
+                <p>Experience: 10 years</p>
+            </div>
+            <div class="teacher">
+                <img src="https://example.com/teacher2.jpg" alt="Teacher 2">
+                <h3>Prof. John Doe</h3>
+                <p>Specialization: Algorithms</p>
+                <p>Experience: 15 years</p>
+            </div>
+        </div>
+        <form id="enrollmentForm" method="post" action="/enroll">
+            <label for="name">Full Name:</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="course">Course:</label>
+            <input type="text" id="course" name="course" value="Data Structures and Algorithms" readonly>
+
+            <label for="teacher">Choose Teacher:</label>
+            <select id="teacher" name="teacher" required>
+                <option value="">Select a teacher</option>
+                <option value="Dr. Jane Smith">Dr. Jane Smith</option>
+                <option value="Prof. John Doe">Prof. John Doe</option>
+            </select>
+
+            <label for="mode">Mode of Study:</label>
+            <select id="mode" name="mode" required>
+                <option value="">Select mode</option>
+                <option value="online">Online</option>
+                <option value="offline">Offline</option>
+            </select>
+
+            <div id="timeSlot">
+                <label for="slot">Time Slot:</label>
+                <select id="slot" name="slot">
+                    <option value="">Select time slot</option>
+                    <option value="morning">Morning (9 AM - 12 PM)</option>
+                    <option value="afternoon">Afternoon (2 PM - 5 PM)</option>
+                    <option value="evening">Evening (7 PM - 10 PM)</option>
+                </select>
+            </div>
+
+            <button type="submit">Confirm Enrollment</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('mode').addEventListener('change', function() {
+            var timeSlot = document.getElementById('timeSlot');
+            if (this.value === 'online') {
+                timeSlot.style.display = 'block';
+            } else {
+                timeSlot.style.display = 'none';
+            }
+        });
+
+        document.getElementById('enrollmentForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            var formData = new FormData(this);
+            var entries = formData.entries();
+            var data = Object.fromEntries(entries);
+            
+            // Here you would typically send this data to your server
+            console.log(data);
+            
+            alert('Enrollment submitted successfully!');
+            this.reset();
+        });
+    </script>
+</body>
+</html>

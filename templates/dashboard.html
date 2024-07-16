@@ -34,7 +34,8 @@
                         <img src="{{ course.image }}" alt="Course Image">
                         <h4>{{ course.name }}</h4>
                         <p>{{ course.description }}</p>
-                        <button>Enroll Now</button>
+                        <form action="/dashboard1" method="post">
+                        <button type="submit">Enroll Now</button></form>
                     </div>
                 {% endfor %}
             </div>
